@@ -9,6 +9,7 @@ import { reviews } from './data/reviews';
 import { CartItem, ReviewType } from './types';
 import { Maps } from './components/Maps/Maps';
 import { Footer } from './components/Footer/Footer';
+import CarouselComponent from './components/Carousel';
 
 function App() {
   const [cartItems, setCartItems] = useState<CartItem[]>([]);
@@ -62,6 +63,10 @@ function App() {
         onCartClick={() => setIsCartOpen(true)}
       />
       <Hero />
+      
+      <div className="w-full p-8">
+        <CarouselComponent />
+      </div>
 
       <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
         <section id="products" className="mb-16">
