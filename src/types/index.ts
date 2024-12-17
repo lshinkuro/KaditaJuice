@@ -33,3 +33,23 @@ export interface UserDetails {
   phone: string;
   address: string;
 }
+
+
+// src/components/Juice/JuiceTypes.ts
+export interface Juice {
+  id?: number;
+  nama: string;
+  deskripsi: string;
+  harga: number;
+  tipe: string;
+  foto: string;
+}
+
+export type JuiceType = 'Buah' | 'Sayur' | 'Campuran';
+
+export interface JuiceContextType {
+  juices: Juice[];
+  tambahJuice: (juice: Juice) => void;
+  editJuice: (juice: Juice) => void;
+  hapusJuice: (id: number) => void;
+}
