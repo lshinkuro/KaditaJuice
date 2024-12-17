@@ -28,8 +28,7 @@ const Home: React.FC = () => {
     const response = await get<Product[]>('/api/v1/menujuice');
     setJuices(response);
     } catch (error) {
-        setJuices(products)
-        // setError("Failed to fetch data");
+        setError("Failed to fetch data");
         console.error('Error fetching data:', error);
     } finally {
         setLoading(false);
@@ -40,9 +39,6 @@ const Home: React.FC = () => {
   useEffect(() => {
     fetchData();
   }, []);
-
- 
-
 
 
   const addToCart = (productId: string) => {
@@ -112,7 +108,7 @@ const Home: React.FC = () => {
         <section id="products" className="mb-16">
           <h2 className="text-3xl font-bold text-gray-900 mb-8">Menu Kami</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {juices.map((product) => (
+            {products.map((product) => (
               <ProductCard
                 key={product.id}
                 product={product}
