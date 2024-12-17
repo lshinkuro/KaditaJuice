@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { Navbar } from './components/Navbar';
 import { Hero } from './components/Hero/Hero';
 import { ProductCard } from './components/ProductCard';
@@ -88,7 +88,6 @@ function App() {
                 quantity={getQuantity(product.id)}
                 onAdd={() => addToCart(product.id)}
                 onRemove={() => removeFromCart(product.id)}
-                isTopSelling={true}
               />
             ))}
           </div>
