@@ -82,4 +82,5 @@ export const Calculator: React.FC = () => {
         )}
       </div>
     </div>
-  );
+  )
+};
