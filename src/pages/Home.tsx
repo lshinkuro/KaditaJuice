@@ -37,7 +37,7 @@ const Home: React.FC = () => {
 
   // Call API on component mount
   useEffect(() => {
-    fetchData();
+    // fetchData();
   }, []);
 
 
