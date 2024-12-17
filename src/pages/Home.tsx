@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { Navbar } from '../components/Navbar';
 import { Hero } from '../components/Hero/Hero';
 import { ProductCard } from '../components/ProductCard';
@@ -6,23 +6,22 @@ import { Cart } from '../components/Cart/Cart';
 import { products } from '../data/products';
 import { Review } from '../components/Review';
 import { reviews } from '../data/reviews';
-import { CartItem, Product, ReviewType } from '../types';
+import { CartItem, ReviewType } from '../types';
 import { Maps } from '../components/Maps/Maps';
 import { Footer } from '../components/Footer/Footer';
 import CarouselComponent from '../components/Carousel';
-import { get } from '../network/ApiConfig';
+//import { get } from '../network/ApiConfig';
 
 const Home: React.FC = () => {
   const [cartItems, setCartItems] = useState<CartItem[]>([]);
   const [isCartOpen, setIsCartOpen] = useState(false);
   
-  const [juices, setJuices] = useState<Product[]>([]);
+  /*const [_, setJuices] = useState<Product[]>([]);
   const [loading, setLoading] = useState<boolean>(false);
   const [error, setError] = useState<string | null>(null);
 
- 
 
-     // Example GET request
+  // Example GET request
   const fetchData = async () => {
     try {
     const response = await get<Product[]>('/api/v1/menujuice');
@@ -37,8 +36,18 @@ const Home: React.FC = () => {
 
   // Call API on component mount
   useEffect(() => {
-    // fetchData();
+    fetchData();
   }, []);
+
+     // Loading state
+     if (loading) {
+        return <div>Loading...</div>;
+    }
+
+    // Error state
+    if (error) {
+    return <div>{error}</div>;
+    }*/
 
 
   const addToCart = (productId: string) => {
@@ -82,15 +91,7 @@ const Home: React.FC = () => {
     .sort((a, b) => (b.salesCount || 0) - (a.salesCount || 0))
     .slice(0, 3);
 
-   // Loading state
-   if (loading) {
-        return <div>Loading...</div>;
-    }
 
-    // Error state
-    if (error) {
-    return <div>{error}</div>;
-    }
 
   return (
     <div className="min-h-screen bg-yellow-400">
