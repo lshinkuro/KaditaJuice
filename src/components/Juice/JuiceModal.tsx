@@ -81,7 +81,7 @@ const JuiceModal: React.FC<JuiceModalProps> = ({
     <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
       <div className="bg-white p-6 rounded-lg w-96 max-h-[90vh] overflow-y-auto">
         <h2 className="text-2xl mb-4">
-          {initialJuice ? 'Edit Juice' : 'Tambah Juice Baru'}
+          {initialJuice ? 'Edit Menu' : 'Add Menu'}
         </h2>
         <div className="space-y-4">
           <input

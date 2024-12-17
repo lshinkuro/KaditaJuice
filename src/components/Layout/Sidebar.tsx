@@ -2,42 +2,60 @@
 import React from 'react';
 import { 
   LayoutDashboard, 
-  CupSoda 
+  CupSoda,
+  X 
 } from 'lucide-react';
 
 interface SidebarProps {
   currentPage: string;
   onPageChange: (page: string) => void;
+  onClose?: () => void;
 }
 
-const Sidebar: React.FC<SidebarProps> = ({ currentPage, onPageChange }) => {
+const Sidebar: React.FC<SidebarProps> = ({ 
+  currentPage, 
+  onPageChange, 
+  onClose 
+}) => {
   return (
-    <div className="w-64 bg-gray-800 text-white p-4">
-      <h2 className="text-2xl font-bold mb-6">Admin Dashboard</h2>
-      <nav>
+    <div className="relative h-full bg-yellow-400">
+      {/* Tombol Close untuk Mobile */}
+      {onClose && (
         <button 
-          onClick={() => onPageChange('dashboard')}
-          className={`w-full flex items-center gap-2 p-2 rounded mb-2 ${
-            currentPage === 'dashboard' 
-              ? 'bg-blue-600 text-white' 
-              : 'hover:bg-gray-700'
-          }`}
+          onClick={onClose}
+          className="md:hidden absolute top-4 right-4 text-white"
         >
-          <LayoutDashboard className="w-5 h-5" />
-          Dashboard
+          <X size={24} />
         </button>
-        <button 
-          onClick={() => onPageChange('juice-management')}
-          className={`w-full flex items-center gap-2 p-2 rounded ${
-            currentPage === 'juice-management' 
-              ? 'bg-blue-600 text-white' 
-              : 'hover:bg-gray-700'
-          }`}
-        >
-          <CupSoda className="w-5 h-5" />
-          Juice Management
-        </button>
-      </nav>
+      )}
+
+      <div className="p-4 pt-16 md:pt-4">
+        <h2 className="text-2xl font-bold mb-6">Admin Dashboard</h2>
+        <nav className="space-y-2">
+          <button 
+            onClick={() => onPageChange('dashboard')}
+            className={`w-full flex items-center gap-2 p-2 rounded mb-2 ${
+              currentPage === 'dashboard' 
+                ? 'bg-blue-600 text-white' 
+                : 'hover:bg-gray-700'
+            }`}
+          >
+            <LayoutDashboard className="w-5 h-5" />
+            Dashboard
+          </button>
+          <button 
+            onClick={() => onPageChange('juice-management')}
+            className={`w-full flex items-center gap-2 p-2 rounded ${
+              currentPage === 'juice-management' 
+                ? 'bg-blue-600 text-white' 
+                : 'hover:bg-gray-700'
+            }`}
+          >
+            <CupSoda className="w-5 h-5" />
+            Juice Management
+          </button>
+        </nav>
+      </div>
     </div>
   );
 };
