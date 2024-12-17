@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Navbar } from '../components/Navbar';
 import { Hero } from '../components/Hero/Hero';
 import { ProductCard } from '../components/ProductCard';
@@ -6,14 +6,44 @@ import { Cart } from '../components/Cart/Cart';
 import { products } from '../data/products';
 import { Review } from '../components/Review';
 import { reviews } from '../data/reviews';
-import { CartItem, ReviewType } from '../types';
+import { CartItem, Product, ReviewType } from '../types';
 import { Maps } from '../components/Maps/Maps';
 import { Footer } from '../components/Footer/Footer';
 import CarouselComponent from '../components/Carousel';
+import { get } from '../network/ApiConfig';
 
 const Home: React.FC = () => {
   const [cartItems, setCartItems] = useState<CartItem[]>([]);
   const [isCartOpen, setIsCartOpen] = useState(false);
+  
+  const [juices, setJuices] = useState<Product[]>([]);
+  const [loading, setLoading] = useState<boolean>(true);
+  const [error, setError] = useState<string | null>(null);
+
+ 
+
+     // Example GET request
+  const fetchData = async () => {
+    try {
+    const response = await get<Product[]>('/api/v1/menujuice');
+    setJuices(response);
+    } catch (error) {
+        setJuices(products)
+        // setError("Failed to fetch data");
+        console.error('Error fetching data:', error);
+    } finally {
+        setLoading(false);
+    }
+  };
+
+  // Call API on component mount
+  useEffect(() => {
+    fetchData();
+  }, []);
+
+ 
+
+
 
   const addToCart = (productId: string) => {
     setCartItems((prev) => {
@@ -56,6 +86,16 @@ const Home: React.FC = () => {
     .sort((a, b) => (b.salesCount || 0) - (a.salesCount || 0))
     .slice(0, 3);
 
+   // Loading state
+   if (loading) {
+        return <div>Loading...</div>;
+    }
+
+    // Error state
+    if (error) {
+    return <div>{error}</div>;
+    }
+
   return (
     <div className="min-h-screen bg-yellow-400">
       <Navbar
@@ -72,7 +112,7 @@ const Home: React.FC = () => {
         <section id="products" className="mb-16">
           <h2 className="text-3xl font-bold text-gray-900 mb-8">Menu Kami</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {products.map((product) => (
+            {juices.map((product) => (
               <ProductCard
                 key={product.id}
                 product={product}
