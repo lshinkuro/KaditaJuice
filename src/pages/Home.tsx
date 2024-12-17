@@ -17,7 +17,7 @@ const Home: React.FC = () => {
   const [isCartOpen, setIsCartOpen] = useState(false);
   
   const [juices, setJuices] = useState<Product[]>([]);
-  const [loading, setLoading] = useState<boolean>(true);
+  const [loading, setLoading] = useState<boolean>(false);
   const [error, setError] = useState<string | null>(null);
 
  
