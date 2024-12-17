@@ -39,7 +39,7 @@ export const HeroContent: React.FC = () => (
           Kadita Juice
         </motion.h1>
         <motion.p 
-          className="text-xl text-gray-600 max-w-lg"
+          className="text-xl text-white max-w-lg"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.4 }}

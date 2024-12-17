@@ -11,7 +11,7 @@ export const Footer: React.FC = () => (
             <FaLeaf className="h-8 w-8 text-green-500" />
             <span className="text-white text-2xl font-bold">Kadita Juice</span>
           </div>
-          <p className="text-gray-400 text-base">
+          <p className="text-white text-base">
             Nikmati kesegaran jus buah alami untuk hidup lebih sehat. 
             Dibuat dengan buah-buahan segar pilihan untuk memberikan nutrisi terbaik bagi tubuh Anda.
           </p>
