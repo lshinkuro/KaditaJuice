@@ -58,7 +58,7 @@ export const HeroContent: React.FC = () => (
           to="products"
           smooth={true}
           duration={500}
-          className="inline-flex items-center px-8 py-3 rounded-lg bg-green-500 text-white hover:bg-green-600 transition-colors cursor-pointer"
+          className="inline-flex items-center px-8 py-3 rounded-lg bg-slate-950	 text-white hover:bg-green-600 transition-colors cursor-pointer"
         >
           Lihat Menu
         </Link>
@@ -66,7 +66,7 @@ export const HeroContent: React.FC = () => (
           href="https://wa.me/6283824266702"
           target="_blank"
           rel="noopener noreferrer"
-          className="inline-flex items-center px-8 py-3 rounded-lg border-2 border-green-500 text-green-500 hover:bg-green-50 transition-colors"
+          className="inline-flex items-center px-8 py-3 rounded-lg border-2 border-white-500 text-slate-950 hover:bg-green-50 transition-colors"
         >
           Hubungi Kami
         </a>

@@ -56,7 +56,7 @@ function App() {
    .slice(0, 3);
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-yellow-400">
       <Navbar
         cartItemsCount={cartItems.reduce((sum, item) => sum + item.quantity, 0)}
         onCartClick={() => setIsCartOpen(true)}
@@ -107,7 +107,7 @@ function App() {
 
 
       </main>
-      
+
       <Maps />
       <Footer />
 
