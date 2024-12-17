@@ -105,7 +105,7 @@ export const HeroContent: React.FC = () => (
     >
       <div className="relative">
         <motion.img
-          src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTEtAxFD_r55vK7KSBkmqhtENVTdclEJfwVHA&s"
+          src="https://static.vecteezy.com/system/resources/previews/027/309/417/non_2x/orange-juice-with-ai-generated-free-png.png"
           alt="Fresh Juices"
           className="w-full h-auto rounded-lg shadow-xl"
           whileHover={{ scale: 1.02 }}
