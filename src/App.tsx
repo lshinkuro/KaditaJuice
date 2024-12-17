@@ -7,6 +7,8 @@ import { products } from './data/products';
 import { Review } from './components/Review';
 import { reviews } from './data/reviews';
 import { CartItem, ReviewType } from './types';
+import { Maps } from './components/Maps/Maps';
+import { Footer } from './components/Footer/Footer';
 
 function App() {
   const [cartItems, setCartItems] = useState<CartItem[]>([]);
@@ -105,6 +107,9 @@ function App() {
 
 
       </main>
+      
+      <Maps />
+      <Footer />
 
       <Cart
         items={cartItems}
