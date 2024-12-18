@@ -29,7 +29,7 @@ export const Navbar: React.FC<NavbarProps> = ({ cartItemsCount, onCartClick }) =
         <div className="flex justify-between h-16 items-center">
           {/* Logo */}
           <div className="flex-shrink-0 flex items-center">
-            <h3 className="font-semibold text-gray-900 mb-1">Joseph Juice</h3>
+            <h3 className="font-semibold text-gray-900 mb-1">Kadita Juice</h3>
           </div>
     
           {/* Mobile Menu / Keranjang */}
