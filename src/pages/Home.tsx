@@ -1,54 +1,47 @@
-import { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Navbar } from '../components/Navbar';
 import { Hero } from '../components/Hero/Hero';
 import { ProductCard } from '../components/ProductCard';
 import { Cart } from '../components/Cart/Cart';
-import { products } from '../data/products';
 import { Review } from '../components/Review';
 import { reviews } from '../data/reviews';
-import { CartItem, ReviewType } from '../types';
+import { CartItem, Product, ReviewType } from '../types';
 import { Maps } from '../components/Maps/Maps';
 import { Footer } from '../components/Footer/Footer';
 import CarouselComponent from '../components/Carousel';
-//import { get } from '../network/ApiConfig';
+import { get } from '../network/ApiConfig';
 
 const Home: React.FC = () => {
   const [cartItems, setCartItems] = useState<CartItem[]>([]);
   const [isCartOpen, setIsCartOpen] = useState(false);
-  
-  /*const [_, setJuices] = useState<Product[]>([]);
-  const [loading, setLoading] = useState<boolean>(false);
+  const [products, setProducts] = useState<Product[]>([]);
+  const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
 
-
-  // Example GET request
   const fetchData = async () => {
+    setLoading(true);
     try {
-    const response = await get<Product[]>('/api/v1/menujuice');
-    setJuices(response);
+      const response = await get<{data:Product[]}>('/api/juices');
+      setProducts(response.data);
     } catch (error) {
-        setError("Failed to fetch data");
-        console.error('Error fetching data:', error);
+      setError("Failed to fetch data");
+      console.error('Error fetching data:', error);
     } finally {
-        setLoading(false);
+      setLoading(false);
     }
   };
 
-  // Call API on component mount
   useEffect(() => {
     fetchData();
   }, []);
 
-     // Loading state
-     if (loading) {
-        return <div>Loading...</div>;
-    }
+  if (loading) {
+    return <div>Loading...</div>;
+  }
 
-    // Error state
-    if (error) {
+  if (error) {
     return <div>{error}</div>;
-    }*/
-
+  }
 
   const addToCart = (productId: string) => {
     setCartItems((prev) => {
@@ -83,15 +76,12 @@ const Home: React.FC = () => {
   };
 
   const getQuantity = (productId: string) => {
-    return cartItems.find((item) => item.id === productId)?.quantity || 0;
+    return cartItems.find((item) => item.id === productId)?.quantity ?? 0;
   };
 
-  // Get top-selling products (based on a hypothetical sales metric)
   const topSellingProducts = [...products]
-    .sort((a, b) => (b.salesCount || 0) - (a.salesCount || 0))
+    .sort((a, b) => (b.salesCount ?? 0) - (a.salesCount ?? 0))
     .slice(0, 3);
-
-
 
   return (
     <div className="min-h-screen bg-yellow-400">
@@ -121,7 +111,6 @@ const Home: React.FC = () => {
           </div>
         </section>
 
-        {/* Top Selling Products Section */}
         <section id="top-selling" className="mb-16">
           <h2 className="text-3xl font-bold text-gray-900 mb-8">Produk Terlaris</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -137,7 +126,6 @@ const Home: React.FC = () => {
           </div>
         </section>
 
-        {/* Customer Reviews Section */}
         <section id="reviews" className="mb-16">
           <h2 className="text-3xl font-bold text-gray-900 mb-8">Apa Kata Pelanggan</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -162,3 +150,5 @@ const Home: React.FC = () => {
 };
 
 export default Home;
+
+
