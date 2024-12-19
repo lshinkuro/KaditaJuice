@@ -36,27 +36,46 @@ export const get = async <T>(endpoint: string, params: Record<string, any> = {},
     }
 };
 
-export const post = async <T>(endpoint: string, data: any): Promise<T> => {
+export const post = async <T>(endpoint: string, data: any, token?: string): Promise<T> => {
     try {
-        const response: AxiosResponse<T> = await axiosInstance.post(endpoint, data);
+        const isFormData = data instanceof FormData;
+        const config: AxiosRequestConfig = {
+            headers: {
+                Authorization: token ? `Bearer ${token}` : undefined,
+                "Content-Type": isFormData ? "multipart/form-data" : "application/json",
+            },
+        };
+        const response: AxiosResponse<T> = await axiosInstance.post(endpoint, data, config);
         return response.data;
     } catch (error) {
         return handleRequestError(error as AxiosError);
     }
 };
 
-export const put = async <T>(endpoint: string, data: any): Promise<T> => {
+export const put = async <T>(endpoint: string, data: any, token?: string): Promise<T> => {
     try {
-        const response: AxiosResponse<T> = await axiosInstance.put(endpoint, data);
+        const isFormData = data instanceof FormData;
+        const config: AxiosRequestConfig = {
+            headers: {
+                Authorization: token ? `Bearer ${token}` : undefined,
+                "Content-Type": isFormData ? "multipart/form-data" : "application/json",
+            },
+        };
+        const response: AxiosResponse<T> = await axiosInstance.put(endpoint, data, config);
         return response.data;
     } catch (error) {
         return handleRequestError(error as AxiosError);
     }
 };
 
-export const del = async <T>(endpoint: string): Promise<T> => {
+export const del = async <T>(endpoint: string, token?: string): Promise<T> => {
     try {
-        const response: AxiosResponse<T> = await axiosInstance.delete(endpoint);
+        const config: AxiosRequestConfig = {
+            headers: {
+                Authorization: token ? `Bearer ${token}` : undefined,
+            },
+        };
+        const response: AxiosResponse<T> = await axiosInstance.delete(endpoint, config);
         return response.data;
     } catch (error) {
         return handleRequestError(error as AxiosError);

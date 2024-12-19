@@ -3,14 +3,14 @@ import React, { useState } from 'react';
 import { PlusCircle } from 'lucide-react';
 import JuiceTable from '../components/Juice/JuiceTable';
 import JuiceModal from '../components/Juice/JuiceModal';
-import { Juice } from '../types';
+import { Product } from '../types';
 
 const JuiceManagementPage: React.FC = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [selectedJuice, setSelectedJuice] = useState<Juice | undefined>(undefined);
+  const [selectedJuice, setSelectedJuice] = useState<Product | undefined>(undefined);
 
-  const handleEditJuice = (juice: Juice) => {
-    setSelectedJuice(juice);
+  const handleEditJuice = (product: Product) => {
+    setSelectedJuice(product);
     setIsModalOpen(true);
   };
 

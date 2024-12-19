@@ -1,12 +1,14 @@
 export interface Product {
-    id: string;
+    id: number;
     name: string;
     price: number;
     description: string;
-    category: "fresh-juices" | "alpuket-kocok" | "es-teller" | "sop-buah" | "new-menu";
-    image?: string;
+    category: string;
+    stringImage?: string;
+    image?: File | null;
     isBestSeller?: boolean;
     salesCount?: number;
+    active: string;
 }
 
 export interface CartItem extends Product {
@@ -47,8 +49,8 @@ export type JuiceType = "Buah" | "Sayur" | "Campuran";
 
 export interface JuiceContextType {
     juices: Juice[];
-    tambahJuice: (juice: Juice) => void;
-    editJuice: (juice: Juice) => void;
+    tambahJuice: (juice: Product) => void;
+    editJuice: (juice: Product) => void;
     hapusJuice: (id: number) => void;
 }
 
