@@ -23,7 +23,7 @@ export const ProductCard: React.FC<ProductCardProps> = ({
     >
       <div className="relative group">
         <img
-          src={product.image}
+          src={product.stringImage}
           alt={product.name}
           className="w-full h-56 object-cover transition-transform duration-300 group-hover:scale-105"
         />

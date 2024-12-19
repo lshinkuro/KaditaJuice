@@ -4,7 +4,7 @@ import { CartItemComponent } from './CartItem';
 
 interface CartItemsProps {
   items: CartItemType[];
-  onRemoveItem: (id: string) => void;
+  onRemoveItem: (id: number) => void;
 }
 
 export const CartItems: React.FC<CartItemsProps> = ({ items, onRemoveItem }) => (

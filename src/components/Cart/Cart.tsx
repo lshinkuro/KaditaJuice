@@ -16,7 +16,7 @@ interface CartProps {
   items: CartItem[];
   onClose: () => void;
   isOpen: boolean;
-  onRemoveItem: (id: string) => void;
+  onRemoveItem: (id: number) => void;
 }
 
 export const Cart: React.FC<CartProps> = ({

@@ -47,7 +47,7 @@ const Home: React.FC = () => {
     return <div>{error}</div>;
   }
 
-  const addToCart = (productId: string) => {
+  const addToCart = (productId: number) => {
     setCartItems((prev) => {
       const existingItem = prev.find((item) => item.id === productId);
       if (existingItem) {
@@ -65,7 +65,7 @@ const Home: React.FC = () => {
     });
   };
 
-  const removeFromCart = (productId: string) => {
+  const removeFromCart = (productId: number) => {
     setCartItems((prev) => {
       const existingItem = prev.find((item) => item.id === productId);
       if (existingItem?.quantity === 1) {
@@ -79,7 +79,7 @@ const Home: React.FC = () => {
     });
   };
 
-  const getQuantity = (productId: string) => {
+  const getQuantity = (productId: number) => {
     return cartItems.find((item) => item.id === productId)?.quantity ?? 0;
   };
 
