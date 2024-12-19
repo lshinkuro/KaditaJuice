@@ -22,12 +22,12 @@ export const Maps: React.FC = () => (
             <div>
               <h3 className="text-lg font-semibold text-gray-900">Kadita Juice</h3>
               <p className="text-gray-600 mt-1">
-                Jl. Raya Kadita No. 123<br />
-                Kecamatan Kadita, Kota Kadita<br />
-                Jawa Tengah, Indonesia
+                Jl. Jenderal Sudirman, Cipancuh<br/>
+                Kec. Haurgeulis, Kabupaten Indramayu<br/>
+                Jawa Barat 45264
               </p>
               <a
-                href="https://goo.gl/maps/your-maps-link"
+                href="https://maps.app.goo.gl/9DSfURH7kszUbG2P9"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex items-center text-green-500 hover:text-green-600 mt-2"
@@ -40,7 +40,7 @@ export const Maps: React.FC = () => (
           <div className="space-y-4">
             <div>
               <h4 className="font-medium text-gray-900">Jam Operasional</h4>
-              <p className="text-gray-600">Setiap Hari: 08.00 - 21.00 WIB</p>
+              <p className="text-gray-600">Setiap Hari: 08.00 - 22.00 WIB</p>
             </div>
             <div>
               <h4 className="font-medium text-gray-900">Kontak</h4>
@@ -52,16 +52,14 @@ export const Maps: React.FC = () => (
         </div>
         
         <div className="h-[400px] rounded-lg overflow-hidden shadow-lg">
-          <iframe
-            src="https://www.google.com/maps/embed?pb=YOUR-MAPS-EMBED-CODE"
-            width="100%"
+          <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3964.5181334387016!2d107.94091777549947!3d-6.455839093535669!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e6937003ca5ede1%3A0xb00d6399995eab65!2sKadita%20Juice!5e0!3m2!1sid!2sid!4v1734608323271!5m2!1sid!2sid"
+           width="100%"
             height="100%"
-            style={{ border: 0 }}
+            style={{border:0}}
             allowFullScreen
             loading="lazy"
             referrerPolicy="no-referrer-when-downgrade"
-            title="Kadita Juice Location"
-          />
+            title="Kadita Juice Location"></iframe>
         </div>
       </div>
     </div>
