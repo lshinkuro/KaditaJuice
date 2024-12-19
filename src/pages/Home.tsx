@@ -10,6 +10,7 @@ import { Maps } from '../components/Maps/Maps';
 import { Footer } from '../components/Footer/Footer';
 import CarouselComponent from '../components/Carousel';
 import { get } from '../network/ApiConfig';
+import Loading from '../components/Loading/Loading';
 
 const Home: React.FC = () => {
   const [cartItems, setCartItems] = useState<CartItem[]>([]);
@@ -36,7 +37,10 @@ const Home: React.FC = () => {
   }, []);
 
   if (loading) {
-    return <div>Loading...</div>;
+    return (
+    <div>
+      <Loading/>
+    </div>)
   }
 
   if (error) {
