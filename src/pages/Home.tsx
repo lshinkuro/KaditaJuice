@@ -88,7 +88,7 @@ const Home: React.FC = () => {
     .slice(0, 3);
 
   return (
-    <div className="min-h-screen bg-yellow-400">
+    <div className="min-h-screen bg-green-700">
       <Navbar
         cartItemsCount={cartItems.reduce((sum, item) => sum + item.quantity, 0)}
         onCartClick={() => setIsCartOpen(true)}
