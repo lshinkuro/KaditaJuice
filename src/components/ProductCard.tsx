@@ -1,7 +1,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { Product } from '../types';
-import { FaPlus, FaMinus, FaStar } from 'react-icons/fa';
+import { FaPlus, FaMinus, FaStar, FaShoppingCart } from 'react-icons/fa';
 
 interface ProductCardProps {
   product: Product;
@@ -49,36 +49,42 @@ export const ProductCard: React.FC<ProductCardProps> = ({
           </div>
         </div>
 
-        <div className="mt-5 flex items-center justify-between">
-          <div className="flex items-center space-x-3 bg-gray-50 p-1 rounded-lg">
+        <div className="mt-5">
+          {quantity === 0 ? (
             <motion.button
-              whileTap={{ scale: 0.9 }}
-              onClick={onRemove}
-              disabled={quantity === 0}
-              className="p-2 rounded-md bg-white text-green-600 shadow-sm disabled:opacity-50 disabled:cursor-not-allowed hover:bg-green-50 transition-colors duration-200"
-            >
-              <FaMinus size={14} />
-            </motion.button>
-            
-            <span className="font-medium text-gray-800 w-8 text-center">
-              {quantity}
-            </span>
-            
-            <motion.button
-              whileTap={{ scale: 0.9 }}
+              whileHover={{ scale: 1.02 }}
+              whileTap={{ scale: 0.95 }}
               onClick={onAdd}
-              className="p-2 rounded-md bg-white text-green-600 shadow-sm hover:bg-green-50 transition-colors duration-200"
+              className="w-full bg-gradient-to-r from-green-600 to-green-500 text-white px-4 py-3 rounded-lg font-medium hover:from-green-700 hover:to-green-600 transition-all duration-200 flex items-center justify-center gap-2 shadow-md hover:shadow-lg"
             >
-              <FaPlus size={14} />
+              <FaShoppingCart className="text-white" size={16} />
+              Add to Cart
             </motion.button>
-          </div>
-
-          {/* <motion.button
-            whileTap={{ scale: 0.95 }}
-            className="bg-green-600 text-white px-4 py-2 rounded-lg font-medium hover:bg-green-700 transition-colors duration-200"
-          >
-            Add to Cart
-          </motion.button> */}
+          ) : (
+            <div className="flex items-center justify-between gap-4">
+              <div className="flex-1 flex items-center justify-between bg-gray-50 p-1.5 rounded-lg">
+                <motion.button
+                  whileTap={{ scale: 0.9 }}
+                  onClick={onRemove}
+                  className="p-2.5 rounded-md bg-white text-green-600 shadow-sm hover:bg-green-50 transition-colors duration-200 flex items-center justify-center"
+                >
+                  <FaMinus size={14} />
+                </motion.button>
+                
+                <span className="font-medium text-gray-800 w-8 text-center">
+                  {quantity}
+                </span>
+                
+                <motion.button
+                  whileTap={{ scale: 0.9 }}
+                  onClick={onAdd}
+                  className="p-2.5 rounded-md bg-white text-green-600 shadow-sm hover:bg-green-50 transition-colors duration-200 flex items-center justify-center"
+                >
+                  <FaPlus size={14} />
+                </motion.button>
+              </div>
+            </div>
+          )}
         </div>
       </div>
     </motion.div>
