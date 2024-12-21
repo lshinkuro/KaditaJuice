@@ -1,6 +1,7 @@
 import axios, { AxiosInstance, AxiosError, AxiosRequestConfig, AxiosResponse } from "axios";
 
-const API_BASE_URL: string = import.meta.env.VITE_APP_API_BASE_URL || "http://localhost:3000";
+const API_BASE_URL: string = import.meta.env.VITE_APP_API_BASE_URL || "http://localhost:3001/api/v1";
+const MOCK_BASE_URL: string = "http://localhost:3001/api/v1"
 
 const axiosInstance: AxiosInstance = axios.create({
     baseURL: API_BASE_URL,
@@ -21,9 +22,15 @@ const handleRequestError = (error: AxiosError): Promise<never> => {
     return Promise.reject(error);
 };
 
-export const get = async <T>(endpoint: string, params: Record<string, any> = {}, token?: string): Promise<T> => {
+export const get = async <T>(endpoint: string,
+    params: Record<string,
+    any> = {},
+    token?: string,
+    options: boolean = true
+    ): Promise<T> => {
     try {
         const config: AxiosRequestConfig = {
+            baseURL: options ? API_BASE_URL : MOCK_BASE_URL,
             params,
             headers: {
                 Authorization: token ? `Bearer ${token}` : undefined,

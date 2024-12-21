@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import { Link } from 'react-scroll';
+import { Link as ScrollLink } from 'react-scroll';
+import { Link as RouterLink } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { FaShoppingCart } from 'react-icons/fa';
 import { Leaf } from 'lucide-react';
@@ -26,11 +27,11 @@ export const Navbar: React.FC<NavbarProps> = ({ cartItemsCount, onCartClick }) =
   }, [isOpen]);
 
   const menuItems = [
-    { name: 'Home', to: 'home' },
-    { name: 'About', to: 'about' },
-    { name: 'Products', to: 'products' },
-    { name: 'Testimonials', to: 'testimonials' },
-    { name: 'Contact', to: 'contact' },
+    { name: 'Home', to: '', type: 'scroll' },
+    // { name: 'About', to: 'about', type: 'route' },
+    { name: 'Products', to: 'products', type: 'scroll' },
+    { name: 'Testimonials', to: 'testimonials', type: 'scroll' },
+    { name: 'Contact', to: 'contact', type: 'scroll' },
   ];
 
   return (
@@ -111,7 +112,8 @@ export const Navbar: React.FC<NavbarProps> = ({ cartItemsCount, onCartClick }) =
           {/* Desktop Menu */}
           <div className="hidden md:flex items-center space-x-8">
             {menuItems.map((item) => (
-              <Link
+              item.type === 'scrol' ? (
+              <ScrollLink
                 key={item.to}
                 to={item.to}
                 smooth={true}
@@ -120,7 +122,17 @@ export const Navbar: React.FC<NavbarProps> = ({ cartItemsCount, onCartClick }) =
               >
                 {item.name}
                 <span className="absolute inset-x-0 bottom-0 h-0.5 bg-green-500 transform scale-x-0 group-hover:scale-x-100 transition-transform origin-left" />
-              </Link>
+              </ScrollLink>
+              ): (
+              <RouterLink
+                key={item.to}
+                to={item.to}
+                className="relative text-gray-600 hover:text-green-500 font-medium transition-colors group"
+              >
+                {item.name}
+                <span className="absolute inset-x-0 bottom-0 h-0.5 bg-green-500 transform scale-x-0 group-hover:scale-x-100 transition-transform origin-left" />
+              </RouterLink>
+              )
             ))}
             
             <motion.button
@@ -156,7 +168,8 @@ export const Navbar: React.FC<NavbarProps> = ({ cartItemsCount, onCartClick }) =
       >
         <div className="px-4 py-6 space-y-4">
           {menuItems.map((item) => (
-            <Link
+            item.type === 'scrol' ? (
+            <ScrollLink
               key={item.to}
               to={item.to}
               smooth={true}
@@ -165,7 +178,17 @@ export const Navbar: React.FC<NavbarProps> = ({ cartItemsCount, onCartClick }) =
               onClick={() => setIsOpen(false)}
             >
               {item.name}
-            </Link>
+            </ScrollLink>
+            ): (
+              <RouterLink
+              key={item.to}
+              to={item.to}
+              className="block px-4 py-3 rounded-xl text-gray-600 hover:text-green-500 hover:bg-green-50 transition-colors font-medium"
+              onClick={() => setIsOpen(false)}
+            >
+              {item.name}
+            </RouterLink>
+            )
           ))}
         </div>
       </motion.div>

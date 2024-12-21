@@ -1,40 +1,24 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { Navbar } from '../components/Navbar';
 import { Hero } from '../components/Hero/Hero';
 import { ProductCard } from '../components/ProductCard';
 import { Cart } from '../components/Cart/Cart';
 import { Review } from '../components/Review';
 import { reviews } from '../data/reviews';
-import { CartItem, Product, ReviewType } from '../types';
+import { ReviewType } from '../types';
+
 import { Maps } from '../components/Maps/Maps';
 import { Footer } from '../components/Footer/Footer';
 import CarouselComponent from '../components/Carousel';
-import { get } from '../network/ApiConfig';
 import Loading from '../components/Loading/Loading';
+import { useProducts } from '../hooks/useProducts';
+import { useCart } from '../contexts/CartContext';
 
 const Home: React.FC = () => {
-  const [cartItems, setCartItems] = useState<CartItem[]>([]);
   const [isCartOpen, setIsCartOpen] = useState(false);
-  const [products, setProducts] = useState<Product[]>([]);
-  const [loading, setLoading] = useState<boolean>(true);
-  const [error, setError] = useState<string | null>(null);
+  const { products, loading, error } = useProducts();
+  const { cartItems, addToCart, removeFromCart } = useCart();
 
-  const fetchData = async () => {
-    setLoading(true);
-    try {
-      const response = await get<{data:Product[]}>('/api/juices');
-      setProducts(response.data);
-    } catch (error) {
-      setError("Failed to fetch data");
-      console.error('Error fetching data:', error);
-    } finally {
-      setLoading(false);
-    }
-  };
-
-  useEffect(() => {
-    fetchData();
-  }, []);
 
   if (loading) {
     return (
@@ -46,38 +30,6 @@ const Home: React.FC = () => {
   if (error) {
     return <div>{error}</div>;
   }
-
-  const addToCart = (productId: number) => {
-    setCartItems((prev) => {
-      const existingItem = prev.find((item) => item.id === productId);
-      if (existingItem) {
-        return prev.map((item) =>
-          item.id === productId
-            ? { ...item, quantity: item.quantity + 1 }
-            : item
-        );
-      }
-      const product = products.find((p) => p.id === productId);
-      if (product) {
-        return [...prev, { ...product, quantity: 1 }];
-      }
-      return prev;
-    });
-  };
-
-  const removeFromCart = (productId: number) => {
-    setCartItems((prev) => {
-      const existingItem = prev.find((item) => item.id === productId);
-      if (existingItem?.quantity === 1) {
-        return prev.filter((item) => item.id !== productId);
-      }
-      return prev.map((item) =>
-        item.id === productId
-          ? { ...item, quantity: item.quantity - 1 }
-          : item
-      );
-    });
-  };
 
   const getQuantity = (productId: number) => {
     return cartItems.find((item) => item.id === productId)?.quantity ?? 0;
@@ -110,7 +62,7 @@ const Home: React.FC = () => {
               key={product.id}
               product={product}
               quantity={getQuantity(product.id)}
-              onAdd={() => addToCart(product.id)}
+              onAdd={() => addToCart({ ...product, quantity: 1 })}
               onRemove={() => removeFromCart(product.id)}
             />
           ))}
@@ -125,7 +77,7 @@ const Home: React.FC = () => {
                 key={product.id}
                 product={product}
                 quantity={getQuantity(product.id)}
-                onAdd={() => addToCart(product.id)}
+                onAdd={() => addToCart({ ...product, quantity: 1 })}
                 onRemove={() => removeFromCart(product.id)}
               />
             ))}
