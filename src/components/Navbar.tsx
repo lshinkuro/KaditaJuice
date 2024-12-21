@@ -27,11 +27,11 @@ export const Navbar: React.FC<NavbarProps> = ({ cartItemsCount, onCartClick }) =
   }, [isOpen]);
 
   const menuItems = [
-    { name: 'Home', to: '', type: 'scroll' },
-    // { name: 'About', to: 'about', type: 'route' },
-    { name: 'Products', to: 'products', type: 'scroll' },
-    { name: 'Testimonials', to: 'testimonials', type: 'scroll' },
-    { name: 'Contact', to: 'contact', type: 'scroll' },
+    { name: 'Home', to: '', type: 'scrol' },
+    { name: 'About', to: 'about', type: 'route' },
+    { name: 'Products', to: 'products', type: 'scrol' },
+    { name: 'Testimonials', to: 'testimonials', type: 'scrol' },
+    { name: 'Contact', to: 'contact', type: 'scrol' },
   ];
 
   return (
