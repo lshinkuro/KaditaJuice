@@ -27,7 +27,7 @@ const LoadingSpinner = () => (
 
 const Loading: React.FC = () => {
   return (
-    <div className="fixed inset-0 flex flex-col justify-center items-center min-h-screen bg-green-700 z-50">
+    <div className="fixed inset-0 flex flex-col justify-center items-center min-h-screen z-50">
       <div className=" flex flex-col items-center gap-4">
         <motion.div
           initial={{ opacity: 0, scale: 0.9 }}

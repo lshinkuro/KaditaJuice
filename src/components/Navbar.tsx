@@ -28,7 +28,7 @@ export const Navbar: React.FC<NavbarProps> = ({ cartItemsCount, onCartClick }) =
 
   const menuItems = [
     { name: 'Home', to: '', type: 'scrol' },
-    { name: 'About', to: 'about', type: 'route' },
+    // { name: 'About', to: 'about', type: 'route' },
     { name: 'Products', to: 'products', type: 'scrol' },
     { name: 'Testimonials', to: 'testimonials', type: 'scrol' },
     { name: 'Contact', to: 'contact', type: 'scrol' },
