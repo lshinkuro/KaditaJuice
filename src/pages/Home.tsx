@@ -34,9 +34,8 @@ const Home: React.FC = () => {
     return cartItems.find((item) => item.id === productId)?.quantity ?? 0;
   };
 
-  const topSellingProducts = [...products]
-    .sort((a, b) => (b.salesCount ?? 0) - (a.salesCount ?? 0))
-    .slice(0, 4);
+  const topSellingProducts = products.filter(product => product.isBestSeller).slice(0,4);
+
 
   return (
     <div className="min-h-screen">
