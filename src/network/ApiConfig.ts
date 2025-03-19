@@ -1,6 +1,6 @@
 import axios, { AxiosInstance, AxiosError, AxiosRequestConfig, AxiosResponse } from "axios";
 
-const API_BASE_URL: string = import.meta.env.APP_API_BASE_URL || "http://localhost:3001/api/v1";
+const API_BASE_URL: string = import.meta.env.APP_API_BASE_URL || "https://kadita-juice-api.onrender.com";
 const MOCK_BASE_URL: string = "http://localhost:3001/api/v1"
 
 const axiosInstance: AxiosInstance = axios.create({
@@ -30,7 +30,7 @@ export const get = async <T>(endpoint: string,
     ): Promise<T> => {
     try {
         const config: AxiosRequestConfig = {
-            baseURL: options ? API_BASE_URL : MOCK_BASE_URL,
+            baseURL: options ? API_BASE_URL : API_BASE_URL,
             params,
             headers: {
                 Authorization: token ? `Bearer ${token}` : undefined,
