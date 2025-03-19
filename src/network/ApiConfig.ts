@@ -1,7 +1,7 @@
 import axios, { AxiosInstance, AxiosError, AxiosRequestConfig, AxiosResponse } from "axios";
 
 const API_BASE_URL: string = import.meta.env.VITE_APP_API_BASE_URL || "https://kadita-juice-api.onrender.com";
-const MOCK_BASE_URL: string = "http://localhost:3001/api/v1"
+const MOCK_BASE_URL: string = "https://kadita-juice-api.onrender.com"
 
 const axiosInstance: AxiosInstance = axios.create({
     baseURL: API_BASE_URL,
